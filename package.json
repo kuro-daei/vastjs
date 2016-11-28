@@ -1,0 +1,21 @@
+{
+  "name": "vastjs",
+  "version": "0.0.1",
+  "description": "VAST Manager",
+  "scripts": {
+    "test": "./node_modules/.bin/webpack-dev-server --port 3000 --hot --inlne --content-base ./test/",
+    "compile:dev": "NODE_ENV=develop ./node_modules/.bin/webpack --watch"
+  },
+  "main": "dist/index.js",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
+    "mocha": "^3.2.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  }
+}

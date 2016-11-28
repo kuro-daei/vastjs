@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="2.0">
+  <Ad id="100">
+    <InLine>
+      <AdSystem version="1">Test</AdSystem>
+      <AdTitle><![CDATA[123456789]]></AdTitle>
+      <Error><![CDATA[]]></Error>
+      <Creatives>
+        <Creative id="200">
+          <Linear>
+            <Duration>00:00:15</Duration>
+            <VideoClicks>
+              <ClickThrough><![CDATA[http://www.dac.co.jp/?vast]]></ClickThrough>
+            </VideoClicks>
+            <MediaFiles>
+              <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/mp4">
+                <![CDATA[ http://localhost:3000/medias/bbb_15s.mp4 ]]>
+              </MediaFile>
+              <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/webm">
+                <![CDATA[ http://localhost:3000/medias/bbb_15s.webm ]]>
+              </MediaFile>
+            </MediaFiles>
+            <TrackingEvents>
+            </TrackingEvents>
+          </Linear>
+        </Creative>
+        <Creative id="123456789">
+          <CompanionAds>
+          </CompanionAds>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>
