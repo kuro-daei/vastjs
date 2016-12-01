@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="2.0">
+  <Ad id="2283317">
+    <Wrapper>
+      <AdSystem version="1">Unit Test</AdSystem>
+      <VASTAdTagURI><![CDATA[/data/wrapper1.xml]]></VASTAdTagURI>
+      <Impression id="IMP"><![CDATA[/img/track.gif?vast&vast&imp]]></Impression>
+      <Impression id="IMP"><![CDATA[/img/track.gif?vast&vast&imp_a]]></Impression>
+      <Creatives>
+        <Creative id="123456789">
+          <Linear>
+            <VideoClicks>
+              <ClickTracking><![CDATA[/img/track.gif?click&vast&vast]]></ClickTracking>
+            </VideoClicks>
+            <TrackingEvents>
+              <Tracking event="Errors"><![CDATA[/img/track.gif?vast&vast&vast&vast&error]]></Tracking>
+              <Tracking event="creativeView"><![CDATA[/img/track.gif?vast&vast&creativeView]]></Tracking>
+              <Tracking event="start"><![CDATA[/img/track.gif?vast&vast&start]]></Tracking>
+              <Tracking event="progress" offset="00:01:30.000"><![CDATA[/img/track.gif?vast&vast&progress_000090]]></Tracking>
+              <Tracking event="progress" offset="00:01:00.000"><![CDATA[/img/track.gif?vast&vast&progress_000060]]></Tracking>
+              <Tracking event="progress" offset="00:01:00.000"><![CDATA[/img/track.gif?vast&vast&progress_000060_a]]></Tracking>
+              <Tracking event="progress" offset="00:00:45.000"><![CDATA[/img/track.gif?vast&vast&progress_000045]]></Tracking>
+              <Tracking event="progress" offset="00:00:40.000"><![CDATA[/img/track.gif?vast&vast&progress_000040]]></Tracking>
+              <Tracking event="progress" offset="00:00:20.000"><![CDATA[/img/track.gif?vast&vast&progress_000020]]></Tracking>
+              <Tracking event="progress" offset="00:00:10.000"><![CDATA[/img/track.gif?vast&vast&progress_000010]]></Tracking>
+              <Tracking event="firstQuartile"><![CDATA[/img/track.gif?vast&vast&firstQuartile]]></Tracking>
+              <Tracking event="thirdQuartile"><![CDATA[/img/track.gif?vast&vast&thirdQuartile]]></Tracking>
+              <Tracking event="midpoint"><![CDATA[/img/track.gif?vast&vast&midpoint]]></Tracking>
+              <Tracking event="complete"><![CDATA[/img/track.gif?vast&vast&complete]]></Tracking>
+              <Tracking event="complete"><![CDATA[/img/track.gif?vast&vast&complete_a]]></Tracking>
+              <Tracking event="close"><![CDATA[/img/track.gif?vast&vast&close]]></Tracking>
+              <Tracking event="close"><![CDATA[/img/track.gif?vast&vast&close_a]]></Tracking>
+              <Tracking event="acceptInvitation"><![CDATA[/img/track.gif?vast&vast&acceptInvitation]]></Tracking>
+              <Tracking event="collapse"><![CDATA[/img/track.gif?vast&vast&collapse]]></Tracking>
+              <Tracking event="expand"><![CDATA[/img/track.gif?vast&vast&expand]]></Tracking>
+              <Tracking event="fullscreen"><![CDATA[/img/track.gif?vast&vast&fullscreen]]></Tracking>
+              <Tracking event="resume"><![CDATA[/img/track.gif?vast&vast&resume]]></Tracking>
+              <Tracking event="pause"><![CDATA[/img/track.gif?vast&vast&pause]]></Tracking>
+              <Tracking event="unmute"><![CDATA[/img/track.gif?vast&vast&unmute]]></Tracking>
+              <Tracking event="mute"><![CDATA[/img/track.gif?vast&vast&mute]]></Tracking>
+            </TrackingEvents>
+          </Linear>
+        </Creative>
+      </Creatives>
+    </Wrapper>
+  </Ad>
+</VAST>

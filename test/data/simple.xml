@@ -1,34 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VAST version="2.0">
-  <Ad id="100">
+  <Ad id="2283317">
     <InLine>
-      <AdSystem version="1">Test</AdSystem>
+      <AdSystem version="1"><![CDATA[Unit Test]]></AdSystem>
       <AdTitle><![CDATA[123456789]]></AdTitle>
       <Error><![CDATA[]]></Error>
+      <Impression id="IMP"><![CDATA[/img/track.gif?imp]]></Impression>
+      <Impression id="IMP"><![CDATA[/img/track.gif?imp_a]]></Impression>
       <Creatives>
-        <Creative id="200">
+        <Creative id="123456789">
           <Linear>
-            <Duration>00:00:15</Duration>
+            <Duration>00:01:30</Duration>
             <VideoClicks>
               <ClickThrough><![CDATA[http://www.dac.co.jp/?vast]]></ClickThrough>
+              <ClickTracking><![CDATA[/img/track.gif?click]]></ClickTracking>
             </VideoClicks>
             <MediaFiles>
               <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/mp4">
-                <![CDATA[ http://localhost:3000/medias/bbb_15s.mp4 ]]>
+                <![CDATA[medias/bbb_15s.mp4]]>
               </MediaFile>
               <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/webm">
-                <![CDATA[ http://localhost:3000/medias/bbb_15s.webm ]]>
+                <![CDATA[medias/bbb_15s.webm]]>
               </MediaFile>
             </MediaFiles>
             <TrackingEvents>
+              <Tracking event="Errors"><![CDATA[/img/track.gif?error]]></Tracking>
+              <Tracking event="creativeView"><![CDATA[/img/track.gif?creativeView]]></Tracking>
+              <Tracking event="start"><![CDATA[/img/track.gif?start]]></Tracking>
+              <Tracking event="progress" offset="00:01:30.000"><![CDATA[/img/track.gif?progress_000090]]></Tracking>
+              <Tracking event="progress" offset="00:01:00.000"><![CDATA[/img/track.gif?progress_000060]]></Tracking>
+              <Tracking event="progress" offset="00:01:00.000"><![CDATA[/img/track.gif?progress_000060_a]]></Tracking>
+              <Tracking event="progress" offset="00:00:45.000"><![CDATA[/img/track.gif?progress_000045]]></Tracking>
+              <Tracking event="progress" offset="00:00:40.000"><![CDATA[/img/track.gif?progress_000040]]></Tracking>
+              <Tracking event="progress" offset="00:00:20.000"><![CDATA[/img/track.gif?progress_000020]]></Tracking>
+              <Tracking event="progress" offset="00:00:10.000"><![CDATA[/img/track.gif?progress_000010]]></Tracking>
+              <Tracking event="firstQuartile"><![CDATA[/img/track.gif?firstQuartile]]></Tracking>
+              <Tracking event="thirdQuartile"><![CDATA[/img/track.gif?thirdQuartile]]></Tracking>
+              <Tracking event="midpoint"><![CDATA[/img/track.gif?midpoint]]></Tracking>
+              <Tracking event="complete"><![CDATA[/img/track.gif?complete]]></Tracking>
+              <Tracking event="complete"><![CDATA[/img/track.gif?complete_a]]></Tracking>
+              <Tracking event="close"><![CDATA[/img/track.gif?close]]></Tracking>
+              <Tracking event="close"><![CDATA[/img/track.gif?close_a]]></Tracking>
+              <Tracking event="acceptInvitation"><![CDATA[/img/track.gif?acceptInvitation]]></Tracking>
+              <Tracking event="collapse"><![CDATA[/img/track.gif?collapse]]></Tracking>
+              <Tracking event="expand"><![CDATA[/img/track.gif?expand]]></Tracking>
+              <Tracking event="fullscreen"><![CDATA[/img/track.gif?fullscreen]]></Tracking>
+              <Tracking event="exitFullscreen"><![CDATA[/img/track.gif?exitFullscreen]]></Tracking>
+              <Tracking event="resume"><![CDATA[/img/track.gif?resume]]></Tracking>
+              <Tracking event="pause"><![CDATA[/img/track.gif?pause]]></Tracking>
+              <Tracking event="unmute"><![CDATA[/img/track.gif?unmute]]></Tracking>
+              <Tracking event="mute"><![CDATA[/img/track.gif?mute]]></Tracking>
             </TrackingEvents>
           </Linear>
         </Creative>
         <Creative id="123456789">
           <CompanionAds>
+            <Companion width="300" height="168">
+              <StaticResource creativeType="image/png">
+                <![CDATA[/img/track.gif?companion_img&width=300&height=168]]>
+              </StaticResource>
+              <CompanionClickThrough>
+                <![CDATA[/img/track.gif?companion_click&width=300&height=168]]>
+              </CompanionClickThrough>
+              <TrackingEvents>
+                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_300x168_tracking1]]></Tracking>
+                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_300x168_tracking2]]></Tracking>
+              </TrackingEvents>
+            </Companion>
+            <Companion width="300" height="250">
+              <StaticResource creativeType="image/png">
+                <![CDATA[/img/track.gif?companion_img&width=300&height=250]]>
+              </StaticResource>
+              <CompanionClickThrough>
+                <![CDATA[/img/track.gif?companion_click&width=300&height=250]]>
+              </CompanionClickThrough>
+              <TrackingEvents>
+                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_300x250_tracking1]]></Tracking>
+                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_300x250_tracking2]]></Tracking>
+              </TrackingEvents>
+            </Companion>
           </CompanionAds>
         </Creative>
       </Creatives>
+      <Extensions>
+        <Extension AdID="123456789"><FCV>0</FCV></Extension>
+      </Extensions>
     </InLine>
   </Ad>
 </VAST>

@@ -5,8 +5,14 @@
         "browser": true,
         "mocha": true
     },
+    "plugins": [
+      "chai-expect"
+    ],
     "extends": "airbnb",
     "rules": {
-      "valid-jsdoc": 2
+      "valid-jsdoc": 2,
+      "chai-expect/missing-assertion": 2,
+      "chai-expect/terminating-properties": 1,
+      "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
     }
 }

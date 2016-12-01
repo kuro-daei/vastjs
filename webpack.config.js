@@ -18,29 +18,24 @@ if (env === 'production') {
 } else {
   config = {
     entry: {index: [
-      './test/src/01-base.js'
+      './test/src/01-base.js',
+      './test/src/02-wrapper.js',
+      './test/src/03-events.js'
     ]},
     output: {
       path: path.join(__dirname, 'test/dist'),
       filename: '[name].js'
     },
-    node: {fs: 'empty'},
-    target: 'node',
     devtool: 'source-map',
-    module: {},
-    loaders: [
-      {
-        test: /src\/*.js$/,
-        loaders: ['babel'],
-        exclude: /(node_modules|bower_components)/,
-      },
-      {
-        test: /test\/*.js$/,
-        loaders: ['mocha', 'babel'],
-        exclude: /(node_modules|bower_components)/,
-      },
-      { test: /\.xml$/, loader: 'xml-loader' } // will load all .xml files with xml-loader by default
-    ],
+    module: {
+      loaders: [
+        {
+          test: /\.js$/,
+          loaders: ['babel-loader?presets[]=es2015'],
+          exclude: /(node_modules|ogv)/
+        }
+      ]
+    },
     devServer: {
       headers: {
         'Access-Control-Allow-Origin': 'http://tpc.googlesyndication.com',
