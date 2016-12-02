@@ -35,11 +35,25 @@ class Vast {
 
   /** **************************************************************************
    * get media file url
-   * @param  {String} type 'video/mp4' or 'video/webm' or etc.
+   * @param {String} type 'video/mp4' or 'video/webm' or etc.
+   * @param {Numer} bitrate kbps. pickup media file less than the bitrate.
    * @return {String} video media url
    ****************************************************************************/
-  media(type = 'video/mp4') {
-    return Vast.text(this.vast.querySelector(`Vast Ad InLine Creatives Creative Linear MediaFiles MediaFile[media="${type}"]`));
+  media(type = 'video/mp4', bitrate = 1500) {
+    const root = this.vast.querySelector(`${this.base} Creatives Creative Linear MediaFiles`);
+    let selectedBitrate = 0;
+    let selected = null;
+    root.querySelectorAll(`MediaFile[delivery="progressive"][type="${type}"]`).forEach((elm) => {
+      const currBitrate = Number.parseInt(elm.getAttribute('bitrate'), 10);
+      if (currBitrate > selectedBitrate && currBitrate <= bitrate) {
+        selectedBitrate = currBitrate;
+        selected = elm;
+      }
+    });
+    if (selected === null) {
+      return null;
+    }
+    return Vast.text(selected);
   }
 
   /** **************************************************************************

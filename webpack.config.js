@@ -20,7 +20,8 @@ if (env === 'production') {
     entry: {index: [
       './test/src/01-base.js',
       './test/src/02-wrapper.js',
-      './test/src/03-events.js'
+      './test/src/03-events.js',
+      './test/src/04-media.js'
     ]},
     output: {
       path: path.join(__dirname, 'test/dist'),

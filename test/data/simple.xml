@@ -16,12 +16,13 @@
               <ClickTracking><![CDATA[/img/track.gif?click]]></ClickTracking>
             </VideoClicks>
             <MediaFiles>
-              <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/mp4">
-                <![CDATA[medias/bbb_15s.mp4]]>
-              </MediaFile>
-              <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/webm">
-                <![CDATA[medias/bbb_15s.webm]]>
-              </MediaFile>
+              <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/mp4"><![CDATA[medias/5226.mp4]]></MediaFile>
+              <MediaFile delivery="progressive" bitrate="1600" width="640" height="360" type="video/mp4"><![CDATA[medias/1600.mp4]]></MediaFile>
+              <MediaFile delivery="progressive" bitrate="1000" width="640" height="360" type="video/mp4"><![CDATA[medias/1000.mp4]]></MediaFile>
+              <MediaFile delivery="streaming"   bitrate="1500" width="640" height="360" type="video/mp4"><![CDATA[medias/st_800.mp4]]></MediaFile>
+              <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/webm"><![CDATA[medias/5226.webm]]></MediaFile>
+              <MediaFile delivery="progressive" bitrate="1500" width="640" height="360" type="video/webm"><![CDATA[medias/1500.webm]]></MediaFile>
+              <MediaFile delivery="progressive" bitrate="1000" width="640" height="360" type="video/webm"><![CDATA[medias/1000.webm]]></MediaFile>
             </MediaFiles>
             <TrackingEvents>
               <Tracking event="Errors"><![CDATA[/img/track.gif?error]]></Tracking>
