@@ -70,28 +70,32 @@ class Vast {
 
   /** **************************************************************************
    * create companion html elements..
+   * @param  {Element} target will appendChild to the target.
    * @param  {Number} width companion width
    * @param  {Number} height companion height
    * @param  {Number} index index of list. default is 0.
    * @return {Element} html element.
    ****************************************************************************/
-  CreateCompanionElement(width, height, index = 0) {
+  createCompanionElement(target, width, height, index = 0) {
     const comp = this.myCompanion(width, height, index);
     if (!comp) {
       return null;
     }
     let elm;
-    if (elm.querySelector('StaticResource')) {
-      const url = Vast.text(elm.querySelector('StaticResource'));
+    if (comp.querySelector('StaticResource')) {
+      const url = Vast.text(comp.querySelector('StaticResource'));
       elm = document.createElement('img');
       elm.src = url;
-    } else if (elm.querySelector('IFrameResource')) {
-      const url = Vast.text(elm.querySelector('IFrameResource'));
+      target.appendChild(elm);
+    } else if (comp.querySelector('IFrameResource')) {
+      const url = Vast.text(comp.querySelector('IFrameResource'));
       elm = document.createElement('iframe');
       elm.src = url;
-    } else if (elm.querySelector('HTMLResource')) {
-      const code = Vast.text(elm.querySelector('HTMLResource'));
+      target.appendChild(elm);
+    } else if (comp.querySelector('HTMLResource')) {
+      const code = Vast.text(comp.querySelector('HTMLResource'));
       elm = document.createElement('iframe');
+      target.appendChild(elm);
       const doc = elm.contentWindow.document;
       const html = `<body>${code}</body>`;
       doc.open();
@@ -103,7 +107,7 @@ class Vast {
       return null;
     }
     elm.style.width = `${width}px`;
-    elm.sytle.height = `${height}px`;
+    elm.style.height = `${height}px`;
     elm.addEventListener('click', (event) => {
       if (!elm.querySelector('CompanionClickThrough')) {
         event.preventDefault();
@@ -310,7 +314,7 @@ class Vast {
    * @return {Element} companion element
    ****************************************************************************/
   myCompanion(width = 0, height = 0, index = 0) {
-    const elms = this.vast.querySelectorAll(`${this.base} Creative Linear Creatives CompanionAds Companion[width="${width}"][height="${height}"]`);
+    const elms = this.vast.querySelectorAll(`${this.base} Creative CompanionAds Companion[width="${width}"][height="${height}"]`);
     const elm = elms[index];
     return elm;
   }

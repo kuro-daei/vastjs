@@ -21,7 +21,8 @@ if (env === 'production') {
       './test/src/01-base.js',
       './test/src/02-wrapper.js',
       './test/src/03-events.js',
-      './test/src/04-media.js'
+      './test/src/04-media.js',
+      './test/src/05-companion.js'
     ]},
     output: {
       path: path.join(__dirname, 'test/dist'),
