@@ -13,7 +13,7 @@ describe('Companion', () => {
     target = document.getElementById('target');
   });
 
-  it('hasCompanion 300x100', (done) => {
+  it('hasCompanion_300x100', (done) => {
     vast.load(url).then(() => {
       expect(vast.hasCompanion(300, 100)).to.equal(true);
       done();
@@ -22,7 +22,7 @@ describe('Companion', () => {
     });
   });
 
-  it('hasCompanion 300x100 index 1', (done) => {
+  it('hasCompanion_300x100_1', (done) => {
     vast.load(url).then(() => {
       expect(vast.hasCompanion(300, 100, 1)).to.equal(true);
       done();
@@ -31,7 +31,7 @@ describe('Companion', () => {
     });
   });
 
-  it('hasCompanion 300x101 (not exist)', (done) => {
+  it('hasCompanion_300x101_not_exist', (done) => {
     vast.load(url).then(() => {
       expect(vast.hasCompanion(300, 101)).to.equal(false);
       done();
@@ -40,7 +40,7 @@ describe('Companion', () => {
     });
   });
 
-  it('hasCompanion 300x100 and index 2 (not exist)', (done) => {
+  it('hasCompanion_300x100_2_not_exist', (done) => {
     vast.load(url).then(() => {
       expect(vast.hasCompanion(300, 100, 2)).to.equal(false);
       done();
@@ -60,7 +60,7 @@ describe('Companion', () => {
     });
   });
 
-  it('CreateCompanionElement 300x100 and index 1 (img)', (done) => {
+  it('CreateCompanionElement_300x100_img)', (done) => {
     vast.load(url).then(() => {
       const elm = vast.createCompanionElement(target, 300, 100, 1);
       expect(elm.tagName).to.equal('IMG');
@@ -71,7 +71,7 @@ describe('Companion', () => {
     });
   });
 
-  it('CreateCompanionElement 400x300 (iframe)', (done) => {
+  it('CreateCompanionElement_400x300_iframe', (done) => {
     vast.load(url).then(() => {
       const elm = vast.createCompanionElement(target, 400, 300);
       expect(elm.tagName).to.equal('IFRAME');
@@ -82,12 +82,36 @@ describe('Companion', () => {
     });
   });
 
-  it('CreateCompanionElement 400x500 (html)', (done) => {
+  it('CreateCompanionElement_400x500_html', (done) => {
     vast.load(url).then(() => {
       const elm = vast.createCompanionElement(target, 400, 500);
       expect(elm.tagName).to.equal('IFRAME');
       expect(elm.contentWindow.document.querySelector('div').innerText).to.contain('HTML 400x500');
       done();
+    }).catch((error) => {
+      done(error);
+    });
+  });
+
+  it('click300x100', (done) => {
+    const trackUrls = [];
+    vast.load(url).then(() => {
+      const elm = vast.createCompanionElement(target, 300, 100);
+      target.addEventListener('vastEvent', (evt) => {
+        trackUrls.push(evt.detail.url);
+        expect(evt.detail.eventName).to.be.equal('companionClickTracking');
+        if (trackUrls.length === 2) {
+          expect(trackUrls).to.have.members([
+            '/img/track.gif?companion_img_track1&width=300&height=100',
+            '/img/track.gif?companion_img_track2&width=300&height=100',
+          ]);
+          done();
+        }
+      }, false);
+      const event = new MouseEvent('click', {
+        view: window, bubbles: true, cancelable: true,
+      });
+      elm.dispatchEvent(event);
     }).catch((error) => {
       done(error);
     });

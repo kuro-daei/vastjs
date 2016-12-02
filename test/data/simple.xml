@@ -60,27 +60,27 @@
               <StaticResource creativeType="image/png"><![CDATA[/img/track.gif?companion_img&width=300&height=100]]></StaticResource>
               <CompanionClickThrough><![CDATA[/img/track.gif?companion_img_click&width=300&height=100]]></CompanionClickThrough>
               <TrackingEvents>
-                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_img_track1&width=300&height=100]]]></Tracking>
-                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_img_track2&width=300&height=100]]]></Tracking>
+                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_img_track1&width=300&height=100]]></Tracking>
+                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_img_track2&width=300&height=100]]></Tracking>
               </TrackingEvents>
             </Companion>
             <Companion width="300" height="100">
               <StaticResource creativeType="image/png"><![CDATA[/img/track.gif?companion_img1&width=300&height=100]]></StaticResource>
               <CompanionClickThrough><![CDATA[/img/track.gif?companion_img1_click&width=300&height=100]]></CompanionClickThrough>
               <TrackingEvents>
-                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_img1_track1&width=300&height=100]]]></Tracking>
-                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_img1_track2&width=300&height=100]]]></Tracking>
+                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_img1_track1&width=300&height=100]]></Tracking>
+                <Tracking event="creativeView"><![CDATA[/img/track.gif?companion_img1_track2&width=300&height=100]]></Tracking>
               </TrackingEvents>
             </Companion>
             <Companion width="400" height="300">
               <IFrameResource><![CDATA[/img/track.gif?companion_iframe&width=400&height=300]]></IFrameResource>
               <CompanionClickThrough><![CDATA[/img/track.gif?companion_iframe_click&width=400&height=300]]></CompanionClickThrough>
-              <TrackingEvents><Tracking event="creativeView"><![CDATA[/img/track.gif?companion_iframe_track&width=400&height=300]]]></Tracking></TrackingEvents>
+              <TrackingEvents><Tracking event="creativeView"><![CDATA[/img/track.gif?companion_iframe_track&width=400&height=300]]></Tracking></TrackingEvents>
             </Companion>
             <Companion width="400" height="500">
               <HTMLResource><![CDATA[<div>HTML 400x500</div>]]></HTMLResource>
               <CompanionClickThrough><![CDATA[/img/track.gif?companion_html_click&width=400&height=500]]></CompanionClickThrough>
-              <TrackingEvents><Tracking event="creativeView"><![CDATA[/img/track.gif?companion_html_track&width=400&height=500]]]></Tracking></TrackingEvents>
+              <TrackingEvents><Tracking event="creativeView"><![CDATA[/img/track.gif?companion_html_track&width=400&height=500]]></Tracking></TrackingEvents>
             </Companion>
           </CompanionAds>
         </Creative>

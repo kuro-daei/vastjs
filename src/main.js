@@ -109,15 +109,15 @@ class Vast {
     elm.style.width = `${width}px`;
     elm.style.height = `${height}px`;
     elm.addEventListener('click', (event) => {
-      if (!elm.querySelector('CompanionClickThrough')) {
+      if (!comp.querySelector('CompanionClickThrough')) {
         event.preventDefault();
         return;
       }
+      const url = comp.querySelector('CompanionClickThrough');
       const tracks = [];
-      this.vast.querySelectorAll('CompanionClickTracking Tracking').forEach((track) => {
+      comp.querySelectorAll('TrackingEvents Tracking').forEach((track) => {
         tracks.push(Vast.text(track));
       });
-      const url = this.vast.querySelector('companionClickTracking');
       this.myTrackAndClick(tracks, url, 'companionClickTracking', '_blank').then(() => {
         event.preventDefault();
       });
