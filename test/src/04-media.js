@@ -44,7 +44,7 @@ describe('Mediafile', () => {
   it('mp4 w/ too small bps', (done) => {
     vast.load(url).then(() => {
       const media = vast.media('video/mp4', 100);
-      expect(media).to.be.null;
+      expect(media).to.equal(null);
       done();
     }).catch((error) => {
       done(error);
