@@ -23,7 +23,7 @@ describe('Base', () => {
       expect(vast.tracked).to.have.lengthOf(0);
       expect(vast.tracking).to.be.equal(true);
       expect(vast.tracks).to.be.an('object');
-      expect(Object.keys(vast.tracks)).to.have.lengthOf(16);
+      expect(Object.keys(vast.tracks)).to.have.lengthOf(15);
       const trk = vast.tracks;
       expect(trk.progresses).to.deep.have.members([
         { offset: 10, url: '/img/track.gif?progress_000010' },
@@ -45,7 +45,6 @@ describe('Base', () => {
       expect(trk.impressions).to.have.members([
         '/img/track.gif?imp_a', '/img/track.gif?imp',
       ]);
-      expect(trk.clicksTracking).to.have.members(['/img/track.gif?click']);
       expect(trk.close).to.have.members([
         '/img/track.gif?close', '/img/track.gif?close_a',
       ]);

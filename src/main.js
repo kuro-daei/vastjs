@@ -43,23 +43,68 @@ class Vast {
   }
 
   /** **************************************************************************
-   * get companion ad
+   * check the vast has companion.
    * @param  {Number} width companion width
    * @param  {Number} height companion height
-   * @return {Object} companion information
+   * @param  {Number} index index of list. default is 0.
+   * @return {Boolean} true:has false:not
    ****************************************************************************/
-  companion(width = 0, height = 0) {
-    const elm = this.vast.querySelector(`${this.base} Creative Linear Creatives CompanionAds Companion[width="${width}"][height="${height}"]`);
-    if (!elm) {
+  hasCompanion(width, height, index = 0) {
+    const elm = this.myCompanion(width, height, index);
+    return !!elm;
+  }
+
+  /** **************************************************************************
+   * create companion html elements..
+   * @param  {Number} width companion width
+   * @param  {Number} height companion height
+   * @param  {Number} index index of list. default is 0.
+   * @return {Element} html element.
+   ****************************************************************************/
+  CreateCompanionElement(width, height, index = 0) {
+    const comp = this.myCompanion(width, height, index);
+    if (!comp) {
       return null;
     }
-    const res = {};
-    res.img = Vast.text(elm.querySelector('StaticResource'));
-    res.iframe = Vast.text(elm.querySelector('IFrameResource'));
-    res.html = Vast.text(elm.querySelector('HTMLResource'));
-    res.click = Vast.text(elm.querySelector('CompanionClickThrough'));
-    res.tracking = Vast.text(elm.querySelector('CompanionClickTracking Tracking'));
-    return res;
+    let elm;
+    if (elm.querySelector('StaticResource')) {
+      const url = Vast.text(elm.querySelector('StaticResource'));
+      elm = document.createElement('img');
+      elm.src = url;
+    } else if (elm.querySelector('IFrameResource')) {
+      const url = Vast.text(elm.querySelector('IFrameResource'));
+      elm = document.createElement('iframe');
+      elm.src = url;
+    } else if (elm.querySelector('HTMLResource')) {
+      const code = Vast.text(elm.querySelector('HTMLResource'));
+      elm = document.createElement('iframe');
+      const doc = elm.contentWindow.document;
+      const html = `<body>${code}</body>`;
+      doc.open();
+      doc.write(html);
+      doc.write('<style> body {margin:0} </style>');
+      doc.write('<script>inDapIF = true;</script>');
+      doc.close();
+    } else {
+      return null;
+    }
+    elm.style.width = `${width}px`;
+    elm.sytle.height = `${height}px`;
+    elm.addEventListener('click', (event) => {
+      if (!elm.querySelector('CompanionClickThrough')) {
+        event.preventDefault();
+        return;
+      }
+      const tracks = [];
+      this.vast.querySelectorAll('CompanionClickTracking Tracking').forEach((track) => {
+        tracks.push(Vast.text(track));
+      });
+      const url = this.vast.querySelector('companionClickTracking');
+      this.myTrackAndClick(tracks, url, 'companionClickTracking', '_blank').then(() => {
+        event.preventDefault();
+      });
+    });
+    return elm;
   }
 
   /** **************************************************************************
@@ -103,17 +148,12 @@ class Vast {
    * @return {Promise} possible to wait all beacons finished
    ****************************************************************************/
   clickVideo(target = '_blank') {
-    const promises = [];
+    const tracks = [];
     this.vast.querySelectorAll(`${this.base} Creatives Creative Linear VideoClicks ClickTracking`).forEach((track) => {
-      const url = Vast.text(track);
-      promises.push(this.myDispatch('videoClickTracking', url));
+      tracks.push(Vast.text(track));
     });
-    const a = document.createElement('a');
-    return Promise.all(promises).then(() => {
-      a.href = this.vast.querySelector(`${this.base} Creatives Creative Linear VideoClicks ClickThrough`);
-      a.target = target;
-      a.click();
-    });
+    const url = this.vast.querySelector(`${this.base} Creatives Creative Linear VideoClicks ClickThrough`);
+    return this.myTrackAndClick(tracks, url, 'videoClicksTracking', target);
   }
 
   /** **************************************************************************
@@ -247,6 +287,41 @@ class Vast {
       this.target.appendChild(img);
     });
   }
+
+  /** **************************************************************************
+   * get companion ad
+   * @param  {Number} width companion width
+   * @param  {Number} height companion height
+   * @param  {Number} index index of list. default is 0.
+   * @return {Element} companion element
+   ****************************************************************************/
+  myCompanion(width = 0, height = 0, index = 0) {
+    const elms = this.vast.querySelectorAll(`${this.base} Creative Linear Creatives CompanionAds Companion[width="${width}"][height="${height}"]`);
+    const elm = elms[index];
+    return elm;
+  }
+
+  /** **************************************************************************
+   * LOCAL : tracking and click
+   * @param  {Array} trackings tracking urls
+   * @param  {String} url  click url
+   * @param  {String} eventName  click event name
+   * @param  {String} target  click target. default '_blank'
+   * @return {Promise} possible to wait all beacons finished
+   ****************************************************************************/
+  myTrackAndClick(trackings, url, eventName, target = '_blank') {
+    const promises = [];
+    trackings.forEach((trackUrl) => {
+      promises.push(this.myDispatch(eventName, trackUrl));
+    });
+    const a = document.createElement('a');
+    return Promise.all(promises).then(() => {
+      a.href = url;
+      a.target = target;
+      a.click();
+    });
+  }
+
 
   /** **************************************************************************
   * convert element to string.

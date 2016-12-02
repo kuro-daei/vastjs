@@ -44,8 +44,6 @@ describe('Wrapper', () => {
         '/img/track.gif?imp_a', '/img/track.gif?imp',
         '/img/track.gif?vast&imp_a', '/img/track.gif?vast&imp',
       ]);
-      expect(trk.clicksTracking).to.have.members(
-        ['/img/track.gif?click', '/img/track.gif?click&vast']);
       expect(trk.close).to.have.members([
         '/img/track.gif?close', '/img/track.gif?close_a',
         '/img/track.gif?vast&close', '/img/track.gif?vast&close_a',
@@ -119,8 +117,6 @@ describe('Wrapper', () => {
         '/img/track.gif?vast&imp_a', '/img/track.gif?vast&imp',
         '/img/track.gif?vast&vast&imp_a', '/img/track.gif?vast&vast&imp',
       ]);
-      expect(trk.clicksTracking).to.have.members([
-        '/img/track.gif?click', '/img/track.gif?click&vast', '/img/track.gif?click&vast&vast']);
       expect(trk.close).to.have.members([
         '/img/track.gif?close', '/img/track.gif?close_a',
         '/img/track.gif?vast&close', '/img/track.gif?vast&close_a',
