@@ -70,13 +70,12 @@ class Vast {
 
   /** **************************************************************************
    * create companion html elements..
-   * @param  {Element} target will appendChild to the target.
    * @param  {Number} width companion width
    * @param  {Number} height companion height
    * @param  {Number} index index of list. default is 0.
    * @return {Element} html element.
    ****************************************************************************/
-  createCompanionElement(target, width, height, index = 0) {
+  createCompanionElement(width, height, index = 0) {
     const comp = this.myCompanion(width, height, index);
     if (!comp) {
       return null;
@@ -86,23 +85,22 @@ class Vast {
       const url = Vast.text(comp.querySelector('StaticResource'));
       elm = document.createElement('img');
       elm.src = url;
-      target.appendChild(elm);
     } else if (comp.querySelector('IFrameResource')) {
       const url = Vast.text(comp.querySelector('IFrameResource'));
       elm = document.createElement('iframe');
       elm.src = url;
-      target.appendChild(elm);
     } else if (comp.querySelector('HTMLResource')) {
       const code = Vast.text(comp.querySelector('HTMLResource'));
       elm = document.createElement('iframe');
-      target.appendChild(elm);
-      const doc = elm.contentWindow.document;
-      const html = `<body>${code}</body>`;
-      doc.open();
-      doc.write(html);
-      doc.write('<style> body {margin:0} </style>');
-      doc.write('<script>inDapIF = true;</script>');
-      doc.close();
+      elm.addEventListener('load', () => {
+        const doc = elm.contentWindow.document;
+        const html = `<body>${code}</body>`;
+        doc.open();
+        doc.write(html);
+        doc.write('<style> body {margin:0} </style>');
+        doc.write('<script>inDapIF = true;</script>');
+        doc.close();
+      }, false);
     } else {
       return null;
     }

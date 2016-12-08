@@ -51,10 +51,13 @@ describe('Companion', () => {
 
   it('CreateCompanionElement 300x100 (img)', (done) => {
     vast.load(url).then(() => {
-      const elm = vast.createCompanionElement(target, 300, 100);
-      expect(elm.tagName).to.equal('IMG');
-      expect(elm.src).to.contain('/img/track.gif?companion_img&width=300&height=100');
-      done();
+      const elm = vast.createCompanionElement(300, 100);
+      elm.addEventListener('load', () => {
+        expect(elm.tagName).to.equal('IMG');
+        expect(elm.src).to.contain('/img/track.gif?companion_img&width=300&height=100');
+        done();
+      }, false);
+      target.appendChild(elm);
     }).catch((error) => {
       done(error);
     });
@@ -62,10 +65,13 @@ describe('Companion', () => {
 
   it('CreateCompanionElement_300x100_img)', (done) => {
     vast.load(url).then(() => {
-      const elm = vast.createCompanionElement(target, 300, 100, 1);
-      expect(elm.tagName).to.equal('IMG');
-      expect(elm.src).to.contain('/img/track.gif?companion_img1&width=300&height=100');
-      done();
+      const elm = vast.createCompanionElement(300, 100, 1);
+      elm.addEventListener('load', () => {
+        expect(elm.tagName).to.equal('IMG');
+        expect(elm.src).to.contain('/img/track.gif?companion_img1&width=300&height=100');
+        done();
+      }, false);
+      target.appendChild(elm);
     }).catch((error) => {
       done(error);
     });
@@ -73,10 +79,13 @@ describe('Companion', () => {
 
   it('CreateCompanionElement_400x300_iframe', (done) => {
     vast.load(url).then(() => {
-      const elm = vast.createCompanionElement(target, 400, 300);
-      expect(elm.tagName).to.equal('IFRAME');
-      expect(elm.src).to.contain('/img/track.gif?companion_iframe&width=400&height=300');
-      done();
+      const elm = vast.createCompanionElement(400, 300);
+      elm.addEventListener('load', () => {
+        expect(elm.tagName).to.equal('IFRAME');
+        expect(elm.src).to.contain('/img/track.gif?companion_iframe&width=400&height=300');
+        done();
+      }, false);
+      target.appendChild(elm);
     }).catch((error) => {
       done(error);
     });
@@ -84,10 +93,13 @@ describe('Companion', () => {
 
   it('CreateCompanionElement_400x500_html', (done) => {
     vast.load(url).then(() => {
-      const elm = vast.createCompanionElement(target, 400, 500);
-      expect(elm.tagName).to.equal('IFRAME');
-      expect(elm.contentWindow.document.querySelector('div').innerText).to.contain('HTML 400x500');
-      done();
+      const elm = vast.createCompanionElement(400, 500);
+      elm.addEventListener('load', () => {
+        expect(elm.tagName).to.equal('IFRAME');
+        expect(elm.contentWindow.document.querySelector('div').innerText).to.contain('HTML 400x500');
+        done();
+      }, false);
+      target.appendChild(elm);
     }).catch((error) => {
       done(error);
     });
@@ -96,22 +108,25 @@ describe('Companion', () => {
   it('click300x100', (done) => {
     const trackUrls = [];
     vast.load(url).then(() => {
-      const elm = vast.createCompanionElement(target, 300, 100);
-      target.addEventListener('vastEvent', (evt) => {
-        trackUrls.push(evt.detail.url);
-        expect(evt.detail.eventName).to.be.equal('companionClickTracking');
-        if (trackUrls.length === 2) {
-          expect(trackUrls).to.have.members([
-            '/img/track.gif?companion_img_track1&width=300&height=100',
-            '/img/track.gif?companion_img_track2&width=300&height=100',
-          ]);
-          done();
-        }
+      const elm = vast.createCompanionElement(300, 100);
+      elm.addEventListener('load', () => {
+        target.addEventListener('vastEvent', (evt) => {
+          trackUrls.push(evt.detail.url);
+          expect(evt.detail.eventName).to.be.equal('companionClickTracking');
+          if (trackUrls.length === 2) {
+            expect(trackUrls).to.have.members([
+              '/img/track.gif?companion_img_track1&width=300&height=100',
+              '/img/track.gif?companion_img_track2&width=300&height=100',
+            ]);
+            done();
+          }
+        }, false);
+        const event = new MouseEvent('click', {
+          view: window, bubbles: true, cancelable: true,
+        });
+        elm.dispatchEvent(event);
       }, false);
-      const event = new MouseEvent('click', {
-        view: window, bubbles: true, cancelable: true,
-      });
-      elm.dispatchEvent(event);
+      target.appendChild(elm);
     }).catch((error) => {
       done(error);
     });
