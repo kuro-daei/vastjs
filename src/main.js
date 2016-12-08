@@ -287,7 +287,7 @@ class Vast {
    * dispatch vast event
    * @param  {String} eventName event name
    * @param  {String} url beacon url
-   * @return {void}
+   * @return {Promise} possible to wait beacon finished
    ****************************************************************************/
   myDispatch(eventName, url) {
     const img = document.createElement('img');
