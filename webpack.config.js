@@ -12,8 +12,16 @@ if (env === 'production') {
   config = {
     entry: {'dist/index.js': './src/main.js'},
     output: { filename: '[name]' },
-    plugins: [ uglify, defineProduction ],
-    module: { loaders: [ babelLoader, urlLoader ] },
+    plugins: [ uglify ],
+    module: {
+      loaders: [
+        {
+          test: /\.js$/,
+          loaders: ['babel-loader?presets[]=es2015'],
+          exclude: /(node_modules|ogv)/
+        }
+      ]
+    },
   };
 } else {
   config = {

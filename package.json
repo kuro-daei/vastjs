@@ -4,6 +4,7 @@
   "description": "VAST Manager",
   "scripts": {
     "test": "./node_modules/.bin/webpack-dev-server --port 3000 --hot --inlne --content-base ./test/",
+    "compile:prd": "NODE_ENV=production ./node_modules/.bin/webpack",
     "compile:dev": "NODE_ENV=develop ./node_modules/.bin/webpack --watch"
   },
   "main": "dist/index.js",
