@@ -1,13 +1,13 @@
 {
   "name": "vastjs",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "VAST Manager",
   "scripts": {
     "test": "./node_modules/.bin/webpack-dev-server --port 3000 --hot --inlne --content-base ./test/",
     "compile:prd": "NODE_ENV=production ./node_modules/.bin/webpack",
     "compile:dev": "NODE_ENV=develop ./node_modules/.bin/webpack --watch"
   },
-  "main": "dist/index.js",
+  "main": "src/main.js",
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",

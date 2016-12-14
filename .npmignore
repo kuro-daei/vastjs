@@ -1,3 +1,4 @@
 test/
-src/
+dist/
+demo/
 webpack.config.js
