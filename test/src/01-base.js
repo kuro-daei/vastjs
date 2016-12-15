@@ -19,8 +19,8 @@ describe('Base', () => {
     const url = '../data/simple.xml';
     vast.load(url).then(() => {
       expect(vast.duration).to.be.equal(90);
-      expect(vast.tracked).to.be.an('array');
-      expect(vast.tracked).to.have.lengthOf(0);
+      expect(vast.tracked).to.be.an('object');
+      expect(Object.keys(vast.tracked)).to.have.lengthOf(0);
       expect(vast.tracking).to.be.equal(true);
       expect(vast.tracks).to.be.an('object');
       expect(Object.keys(vast.tracks)).to.have.lengthOf(15);

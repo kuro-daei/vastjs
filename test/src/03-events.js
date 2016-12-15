@@ -9,7 +9,8 @@ describe('Events', () => {
     const url = '../data/simple.xml';
     vast.load(url).then(() => {
       vast.timeupdate(0).then(() => {
-        expect(vast.tracked).to.have.members(['/img/track.gif?start']);
+        expect(Object.keys(vast.tracked)).to.have.members(['percents']);
+        expect(vast.tracked.percents).to.have.members(['/img/track.gif?start']);
         done();
       }).catch((error) => {
         done(error);
@@ -24,10 +25,9 @@ describe('Events', () => {
     const url = '../data/simple.xml';
     vast.load(url).then(() => {
       vast.timeupdate(22.5).then(() => {
-        expect(vast.tracked).to.have.members([
-          '/img/track.gif?start', '/img/track.gif?firstQuartile',
-          '/img/track.gif?progress_000010', '/img/track.gif?progress_000020',
-        ]);
+        expect(Object.keys(vast.tracked)).to.have.members(['percents', 'progresses']);
+        expect(vast.tracked.percents).to.have.members(['/img/track.gif?start', '/img/track.gif?firstQuartile']);
+        expect(vast.tracked.progresses).to.have.members(['/img/track.gif?progress_000010', '/img/track.gif?progress_000020']);
         done();
       }).catch((error) => {
         done(error);
@@ -42,10 +42,9 @@ describe('Events', () => {
     const url = '../data/simple.xml';
     vast.load(url).then(() => {
       vast.timeupdate(45).then(() => {
-        expect(vast.tracked).to.have.members([
-          '/img/track.gif?start', '/img/track.gif?firstQuartile', '/img/track.gif?midpoint',
-          '/img/track.gif?progress_000010', '/img/track.gif?progress_000020', '/img/track.gif?progress_000040', '/img/track.gif?progress_000045',
-        ]);
+        expect(Object.keys(vast.tracked)).to.have.members(['percents', 'progresses']);
+        expect(vast.tracked.percents).to.have.members(['/img/track.gif?start', '/img/track.gif?firstQuartile', '/img/track.gif?midpoint']);
+        expect(vast.tracked.progresses).to.have.members(['/img/track.gif?progress_000010', '/img/track.gif?progress_000020', '/img/track.gif?progress_000040', '/img/track.gif?progress_000045']);
         done();
       }).catch((error) => {
         done(error);
@@ -60,8 +59,9 @@ describe('Events', () => {
     const url = '../data/simple.xml';
     vast.load(url).then(() => {
       vast.timeupdate(90).then(() => {
-        expect(vast.tracked).to.have.members([
-          '/img/track.gif?start', '/img/track.gif?firstQuartile', '/img/track.gif?midpoint', '/img/track.gif?thirdQuartile', '/img/track.gif?complete', '/img/track.gif?complete_a',
+        expect(Object.keys(vast.tracked)).to.have.members(['percents', 'progresses']);
+        expect(vast.tracked.percents).to.have.members(['/img/track.gif?start', '/img/track.gif?firstQuartile', '/img/track.gif?midpoint', '/img/track.gif?thirdQuartile', '/img/track.gif?complete', '/img/track.gif?complete_a']);
+        expect(vast.tracked.progresses).to.have.members([
           '/img/track.gif?progress_000010', '/img/track.gif?progress_000020', '/img/track.gif?progress_000040', '/img/track.gif?progress_000045',
           '/img/track.gif?progress_000060_a', '/img/track.gif?progress_000060', '/img/track.gif?progress_000090',
         ]);
@@ -79,7 +79,8 @@ describe('Events', () => {
     const url = '../data/simple.xml';
     vast.load(url).then(() => {
       vast.dispatchEvent('impressions').then(() => {
-        expect(vast.tracked).to.have.members(['/img/track.gif?imp', '/img/track.gif?imp_a']);
+        expect(Object.keys(vast.tracked)).to.have.members(['impressions']);
+        expect(vast.tracked.impressions).to.have.members(['/img/track.gif?imp', '/img/track.gif?imp_a']);
         done();
       }).catch((error) => {
         done(error);
@@ -94,7 +95,8 @@ describe('Events', () => {
     const url = '../data/simple.xml';
     vast.load(url).then(() => {
       vast.dispatchEvent('creativeView').then(() => {
-        expect(vast.tracked).to.have.members(['/img/track.gif?creativeView']);
+        expect(Object.keys(vast.tracked)).to.have.members(['creativeView']);
+        expect(vast.tracked.creativeView).to.have.members(['/img/track.gif?creativeView']);
         done();
       }).catch((error) => {
         done(error);
@@ -120,19 +122,20 @@ describe('Events', () => {
       promises.push(vast.dispatchEvent('unmute'));
       promises.push(vast.dispatchEvent('mute'));
       Promise.all(promises).then(() => {
-        expect(vast.tracked).to.have.members([
-          '/img/track.gif?close',
-          '/img/track.gif?close_a',
-          '/img/track.gif?acceptInvitation',
-          '/img/track.gif?collapse',
-          '/img/track.gif?expand',
-          '/img/track.gif?fullscreen',
-          '/img/track.gif?exitFullscreen',
-          '/img/track.gif?resume',
-          '/img/track.gif?pause',
-          '/img/track.gif?unmute',
-          '/img/track.gif?mute',
+        expect(Object.keys(vast.tracked)).to.have.members([
+          'close', 'acceptInvitation', 'collapse', 'expand',
+          'fullscreen', 'exitFullscreen', 'resume', 'pause', 'unmute', 'mute',
         ]);
+        expect(vast.tracked.close).to.have.members(['/img/track.gif?close', '/img/track.gif?close_a']);
+        expect(vast.tracked.acceptInvitation).to.have.members(['/img/track.gif?acceptInvitation']);
+        expect(vast.tracked.collapse).to.have.members(['/img/track.gif?collapse']);
+        expect(vast.tracked.expand).to.have.members(['/img/track.gif?expand']);
+        expect(vast.tracked.fullscreen).to.have.members(['/img/track.gif?fullscreen']);
+        expect(vast.tracked.exitFullscreen).to.have.members(['/img/track.gif?exitFullscreen']);
+        expect(vast.tracked.resume).to.have.members(['/img/track.gif?resume']);
+        expect(vast.tracked.pause).to.have.members(['/img/track.gif?pause']);
+        expect(vast.tracked.unmute).to.have.members(['/img/track.gif?unmute']);
+        expect(vast.tracked.mute).to.have.members(['/img/track.gif?mute']);
         done();
       }).catch((error) => {
         done(error);
@@ -147,7 +150,8 @@ describe('Events', () => {
     const url = '../data/simple.xml';
     vast.load(url).then(() => {
       vast.clickVideo().then(() => {
-        expect(vast.tracked).to.have.members(['/img/track.gif?click']);
+        expect(Object.keys(vast.tracked)).to.have.members(['videoClicksTracking']);
+        expect(vast.tracked.videoClicksTracking).to.have.members(['/img/track.gif?click']);
         done();
       }).catch((error) => {
         done(error);

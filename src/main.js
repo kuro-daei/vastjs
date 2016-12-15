@@ -15,6 +15,7 @@ class Vast {
   constructor(target) {
     this.duration = 0;
     this.tracks = {};
+    this.tracked = {};
     this.tracks.impressions = [];
     this.tracks.progresses = [];
     this.tracks.percents = [];
@@ -153,7 +154,7 @@ class Vast {
   dispatchEvent(eventName) {
     const promises = [];
     this.tracks[eventName].forEach((url) => {
-      promises.push(this.myDispatch(name, url));
+      promises.push(this.myDispatch(eventName, url));
     });
     return Promise.all(promises);
   }
@@ -230,7 +231,6 @@ class Vast {
       this.duration = Vast.sec(Vast.text(duration));
     }
     this.tracking = true;
-    this.tracked = [];
   }
 
   /** **************************************************************************
@@ -295,7 +295,10 @@ class Vast {
         this.target.dispatchEvent(new CustomEvent('vastEvent', {
           detail: { eventName, url }, bubbles: true,
         }));
-        this.tracked.push(url);
+        if (typeof this.tracked[eventName] === 'undefined') {
+          this.tracked[eventName] = [];
+        }
+        this.tracked[eventName].push(url);
         resolve();
       });
       img.src = url;
