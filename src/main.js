@@ -45,13 +45,17 @@ class Vast {
     const root = this.vast.querySelector(`${this.base} Creatives Creative Linear MediaFiles`);
     let selectedBitrate = 0;
     let selected = null;
-    root.querySelectorAll(`MediaFile[delivery="${delivery}"][type="${type}"]`).forEach((elm) => {
-      const currBitrate = Number.parseInt(elm.getAttribute('bitrate'), 10);
-      if (currBitrate > selectedBitrate && currBitrate <= bitrate) {
-        selectedBitrate = currBitrate;
-        selected = elm;
-      }
-    });
+    if (delivery === 'streaming') {
+      selected = root.querySelector(`MediaFile[delivery="streaming"][type="${type}"]`);
+    } else {
+      root.querySelectorAll(`MediaFile[delivery="progressive"][type="${type}"]`).forEach((elm) => {
+        const currBitrate = Number.parseInt(elm.getAttribute('bitrate'), 10);
+        if (currBitrate > selectedBitrate && currBitrate <= bitrate) {
+          selectedBitrate = currBitrate;
+          selected = elm;
+        }
+      });
+    }
     if (selected === null) {
       return null;
     }
