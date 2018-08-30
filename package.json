@@ -1,6 +1,6 @@
 {
   "name": "vastjs",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "VAST Manager",
   "scripts": {
     "test": "./node_modules/.bin/webpack-dev-server --port 3000 --hot --inlne --content-base ./test/",
