@@ -31,6 +31,16 @@ describe('Mediafile', () => {
     });
   });
 
+  it('streaming', (done) => {
+    vast.load(url).then(() => {
+      const media = vast.media('application/x-mpegURL', 6000, 'streaming');
+      expect(media).to.equal('streaming/1000.mp4');
+      done();
+    }).catch((error) => {
+      done(error);
+    });
+  });
+
   it('webm w/ dedfault parameters', (done) => {
     vast.load(url).then(() => {
       const media = vast.media('video/webm');

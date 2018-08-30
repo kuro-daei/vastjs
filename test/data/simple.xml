@@ -23,6 +23,7 @@
               <MediaFile delivery="progressive" bitrate="5226" width="640" height="360" type="video/webm"><![CDATA[medias/5226.webm]]></MediaFile>
               <MediaFile delivery="progressive" bitrate="1500" width="640" height="360" type="video/webm"><![CDATA[medias/1500.webm]]></MediaFile>
               <MediaFile delivery="progressive" bitrate="1000" width="640" height="360" type="video/webm"><![CDATA[medias/1000.webm]]></MediaFile>
+              <MediaFile delivery="streaming" bitrate="1000" width="640" height="360" type="application/x-mpegURL"><![CDATA[streaming/1000.mp4]]></MediaFile>
             </MediaFiles>
             <TrackingEvents>
               <Tracking event="Errors"><![CDATA[/img/track.gif?error]]></Tracking>

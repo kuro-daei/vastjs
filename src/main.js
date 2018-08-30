@@ -38,13 +38,14 @@ class Vast {
    * get media file url
    * @param {String} type 'video/mp4' or 'video/webm' or etc.
    * @param {Numer} bitrate kbps. pickup media file less than the bitrate.
+   * @param {String} delivery 'progressive' or 'streaming' or etc.
    * @return {String} video media url
    ****************************************************************************/
-  media(type = 'video/mp4', bitrate = 1500) {
+  media(type = 'video/mp4', bitrate = 1500, delivery = 'progressive') {
     const root = this.vast.querySelector(`${this.base} Creatives Creative Linear MediaFiles`);
     let selectedBitrate = 0;
     let selected = null;
-    root.querySelectorAll(`MediaFile[delivery="progressive"][type="${type}"]`).forEach((elm) => {
+    root.querySelectorAll(`MediaFile[delivery="${delivery}"][type="${type}"]`).forEach((elm) => {
       const currBitrate = Number.parseInt(elm.getAttribute('bitrate'), 10);
       if (currBitrate > selectedBitrate && currBitrate <= bitrate) {
         selectedBitrate = currBitrate;
